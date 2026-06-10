@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор на акаунти</title>
+    <style>
+        /* Модерен, чист дизайн със сини нюанси */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background-color: #f0f8ff; /* Много светлосин фон за целия сайт */
+            color: #333;
+            padding: 50px; 
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-block;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 { 
+            color: #0056b3; /* Тъмносиньо за заглавието */
+            margin-bottom: 30px; 
+        }
+
+        /* Дизайн на полетата за резултат */
+        #result-container {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #e6f7ff; /* Светлосиньо поле за текста */
+            border-radius: 8px;
+            border: 1px solid #91d5ff;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #0056b3;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #email-result, #password-result { 
+            font-family: monospace;
+            font-size: 18px; 
+            color: #004085; 
+            word-wrap: break-word;
+        }
+
+        /* Дизайн на модерния бутон */
+        button {
+            background-color: #007bff; /* Синьо за бутона */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Тъмносиньо при посочване */
+        }
+
+        button:active {
+            transform: scale(0.98); /* Леко "свиване" при натискане */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор на акаунти</h1>
+        
+        <!-- Бутонът -->
+        <button onclick="generateAccount()">Генерирай нов акаунт</button>
+
+        <!-- Полетата за резултати -->
+        <div id="result-container">
+            <div class="result-item">
+                <span class="label">Имейл:</span>
+                <div id="email-result">Натиснете бутона...</div>
+            </div>
+            <div class="result-item">
+                <span class="label">Парола:</span>
+                <div id="password-result">Натиснете бутона...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       // ТУК ЗАПОЧВА ПРОВЕРКАТА ЗА ПАРОЛА
+        const vavedenaParola = prompt("Моля, въведете паролата за достъп:");
+        if (vavedenaParola !== "premium generator") {
+            document.body.innerHTML = "<h1>Достъпът е отказан!</h1>";
+        } 
+        else {
+            // ТУК Е ЛОГИКАТА НА ГЕНЕРАТОРА
+            function generateAccount() {
+                const domains = ['gmail.com', 'outlook.com', 'abv.bg', 'rambler.ru'];
+                const randomName = Math.random().toString(36).substring(2, 12);
+                const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+                const email = randomName + '@' + randomDomain;
+                
+                const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+                let password = '';
+                for (let i = 0; i < 12; i++) {
+                    password += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                
+                document.getElementById('email-result').innerText = email;
+                document.getElementById('password-result').innerText = password;
+            }
+        }
+    </script>
+</body>
+</html>
