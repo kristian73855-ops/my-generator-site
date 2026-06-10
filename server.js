@@ -1,9 +1,16 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = 3000;
 
-app.use(express.static('public'));
+// Казваме на сървъра къде са файловете
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Казваме му да зарежда index.html при отваряне
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log('Сървърът работи на адрес: http://localhost:3000');
+    console.log(`Server is running on port ${PORT}`);
 });
