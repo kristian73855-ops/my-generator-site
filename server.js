@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Казваме на сървъра къде са файловете
-app.use(express.static(path.join(__dirname, 'public')));
+// Гледаме директно в основната папка
+app.use(express.static(__dirname));
 
-// Казваме му да зарежда index.html при отваряне
+// Зареждаме index.html от основната папка
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
