@@ -102,29 +102,22 @@
     </div>
 
     <script>
-       // ТУК ЗАПОЧВА ПРОВЕРКАТА ЗА ПАРОЛА
-        const vavedenaParola = prompt("Моля, въведете паролата за достъп:");
-        if (vavedenaParola !== "premium generator") {
-            document.body.innerHTML = "<h1>Достъпът е отказан!</h1>";
-        } 
-        else {
-            // ТУК Е ЛОГИКАТА НА ГЕНЕРАТОРА
-            function generateAccount() {
-                const domains = ['gmail.com', 'outlook.com', 'abv.bg', 'rambler.ru'];
-                const randomName = Math.random().toString(36).substring(2, 12);
-                const randomDomain = domains[Math.floor(Math.random() * domains.length)];
-                const email = randomName + '@' + randomDomain;
-                
-                const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-                let password = '';
-                for (let i = 0; i < 12; i++) {
-                    password += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                
-                document.getElementById('email-result').innerText = email;
-                document.getElementById('password-result').innerText = password;
-            }
+     // ТУК Е ЛОГИКАТА НА ГЕНЕРАТОРА
+    function generateAccount() {
+        const domains = ['gmail.com', 'outlook.com', 'abv.bg', 'rambler.ru'];
+        const randomName = Math.random().toString(36).substring(2, 12);
+        const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+        const email = randomName + '@' + randomDomain;
+        
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+        let password = '';
+        for (let i = 0; i < 12; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
         }
+        
+        document.getElementById('email-result').innerText = email;
+        document.getElementById('password-result').innerText = password;
+    }
     </script>
 </body>
 </html>
